@@ -1,0 +1,24 @@
+﻿@model CreateAPost.ViewModel.PostFormViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Posts"))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-group">
+        @Html.LabelFor(m=>m.Text, "Post: ")
+        @Html.TextBoxFor(m=>m.Text, new {@class ="form-control", autofocus="autofocus", placeholder="Upisite post"})
+        @Html.ValidationMessageFor(m=>m.Text)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Spremi post</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

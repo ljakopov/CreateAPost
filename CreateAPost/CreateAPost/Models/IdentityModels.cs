@@ -1,8 +1,8 @@
-﻿using System.Data.Entity;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace CreateAPost.Models
 {
@@ -20,6 +20,9 @@ namespace CreateAPost.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        //tu idu DBSetovi
+        public DbSet<Post> Posts { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

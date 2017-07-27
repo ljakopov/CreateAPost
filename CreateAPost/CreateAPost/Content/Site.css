@@ -22,3 +22,10 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Bootstrap overrview */
+
+span.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
