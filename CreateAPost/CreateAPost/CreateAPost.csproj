@@ -210,8 +210,13 @@
     <Compile Include="Migrations\201707270929175_CreatePostTable.Designer.cs">
       <DependentUpon>201707270929175_CreatePostTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201707311627493_CreateFriendshipsTable.cs" />
+    <Compile Include="Migrations\201707311627493_CreateFriendshipsTable.Designer.cs">
+      <DependentUpon>201707311627493_CreateFriendshipsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Friendship.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Post.cs" />
@@ -299,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201707270929175_CreatePostTable.resx">
       <DependentUpon>201707270929175_CreatePostTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707311627493_CreateFriendshipsTable.resx">
+      <DependentUpon>201707311627493_CreateFriendshipsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
