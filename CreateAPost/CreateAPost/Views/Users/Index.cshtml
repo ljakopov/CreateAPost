@@ -1,0 +1,32 @@
+﻿@model List<CreateAPost.Models.ApplicationUser> 
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@foreach (var user in Model)
+{
+    <div class="alert alert-success" role="alert">
+        @user.UserName
+        <button data-user-id ="@user.Id"class="btn btn-danger js-toggle-friends">Add friend</button>
+    </div>
+
+
+}
+
+@section scripts
+<script>
+    $(document).ready(function() {
+        $(".js-toggle-friends").click(function(e) {
+            var button = $(e.target);
+            $.post("/api/attendances", { GigId: button.attr("data-user-id") })
+                .done(function() {
+                    button.removeClass("btn-danger").addClass("btn-info").text("Friend");
+                })
+                .fail(function() {
+                    alert("WRONG KRIVO BUDALO");
+                });
+        });
+    });
+</script>

@@ -43,3 +43,10 @@ span.field-validation-error {
 .like {
     margin-top: 7px;
 }
+
+.alert-success {
+    color: #468847;
+    background-color: #ffffff;
+    border-color: #d6e9c6;
+    width: 400px;
+}
