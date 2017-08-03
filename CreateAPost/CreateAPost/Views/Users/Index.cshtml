@@ -15,18 +15,19 @@
 
 }
 
-@section scripts
-<script>
-    $(document).ready(function() {
-        $(".js-toggle-friends").click(function(e) {
-            var button = $(e.target);
-            $.post("/api/attendances", { GigId: button.attr("data-user-id") })
-                .done(function() {
-                    button.removeClass("btn-danger").addClass("btn-info").text("Friend");
-                })
-                .fail(function() {
-                    alert("WRONG KRIVO BUDALO");
-                });
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            $(".js-toggle-friends").click(function(e) {
+                var button = $(e.target);
+                $.post("/api/friendship", { FriendId: button.attr("data-user-id") })
+                    .done(function() {
+                        button.removeClass("btn-danger").addClass("btn-info").text("Friend");
+                    })
+                    .fail(function() {
+                        alert("WRONG KRIVO BUDALO");
+                    });
+            });
         });
-    });
-</script>
+    </script>
+}
