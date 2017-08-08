@@ -15,20 +15,30 @@ namespace CreateAPost.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
+        [Authorize]
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
             var posts = _context.Posts
                 .Where(p => p.UserId == userId)
+                .Include(p=>p.Comments)
                 .Include(p => p.User)
                 .ToList();
 
+            
             var viewModel = new PostViewModel()
             {
                 UsersPosts = posts,
                 UserAuth = User.Identity.IsAuthenticated
             };
-            return View(viewModel);
+
+    
+
+            var viewModelPartialPostViewModel = new PartialPostViewModel();
+            viewModelPartialPostViewModel.PostViewModel = viewModel;
+
+            return View(viewModelPartialPostViewModel);
         }
 
         public ActionResult About()

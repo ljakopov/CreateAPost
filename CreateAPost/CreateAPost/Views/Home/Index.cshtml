@@ -1,5 +1,5 @@
 ﻿@using System.Globalization
-@model CreateAPost.ViewModel.PostViewModel
+@model CreateAPost.ViewModel.PartialPostViewModel
     
 
 @{
@@ -7,9 +7,9 @@
 }
 
 <div class="row">
-@if (Model.UserAuth)
+@if (Model.PostViewModel.UserAuth)
 {
-    foreach (var post in Model.UsersPosts)
+    foreach (var post in Model.PostViewModel.UsersPosts)
     {
         <div class="panel panel-default">
             <div class="panel-body">
@@ -21,8 +21,27 @@
                 <div class="like">
                     <a class="btn btn-primary glyphicon glyphicon-hand-up"></a>
                 </div>
+                <h5>Post ima: @post.Comments.Count komentara </h5>
+                @foreach (var comment in post.Comments)
+                {
+                    @Html.Partial("../_IndexComment", comment)
+                }
             </div>
         </div>
+
+        using (Html.BeginForm("Create", "Comments", new {id = post.Id}, FormMethod.Post))
+         {
+             @Html.AntiForgeryToken()
+
+             <div class="form-group">
+                 @Html.LabelFor(m => m.CommentFormViewModel.Body, "Komentar: ")
+                 @Html.TextBoxFor(m => m.CommentFormViewModel.Body, new { @class = "form-control", autofocus = "autofocus", placeholder = "Upisite komentar" })
+             </div>
+
+             <div class="form-group">
+                 <button type="submit" class="btn btn-primary">Spremi komentar</button>
+             </div>
+            }
     }
 }
 </div>

@@ -1,5 +1,6 @@
 ﻿using CreateAPost.Models;
 using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -20,9 +21,26 @@ namespace CreateAPost.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var notFriends = _context.Users.Where(u => u.Id != userId).ToList();
+            var friends = _context.Friendships.Where(f => f.ApplicationUserId == userId).Include(f => f.FriendUser)
+                .ToList();
 
-            return View(notFriends);
+
+            return View(friends);
         }
+
+        public ActionResult NonFrends()
+        {/*
+            var userId = User.Identity.GetUserId();
+
+            var friends = _context.Friendships.Where(f => f.ApplicationUserId == userId).ToArray();
+            Debug.WriteLine("ISPIS: " + friends);
+            var friendsA = _context.Users.Where(u => u.Id != friends).ToList();
+            */
+
+            return View();
+        }
+
+
+
     }
 }

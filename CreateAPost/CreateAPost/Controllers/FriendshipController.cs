@@ -24,7 +24,6 @@ namespace CreateAPost.Controllers
             Debug.WriteLine("TU SMO");
             if (_context.Friendships.Any(f => f.ApplicationUserId == userId && f.FriendUserId == dto.FriendId))
             {
-                Debug.WriteLine("OVO JE ID: " + dto.FriendId);
                 return BadRequest("Korisnika već pratite");
             }
 
@@ -36,8 +35,6 @@ namespace CreateAPost.Controllers
 
             _context.Friendships.Add(friendsgip);
             _context.SaveChanges();
-
-            Debug.WriteLine("iofjeifj SPREMANJEEEE");
 
             return Ok();
         }

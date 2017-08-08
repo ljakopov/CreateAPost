@@ -1,4 +1,4 @@
-﻿@model List<CreateAPost.Models.ApplicationUser> 
+﻿@model List<CreateAPost.Models.Friendship> 
 @{
     ViewBag.Title = "Index";
 }
@@ -8,8 +8,8 @@
 @foreach (var user in Model)
 {
     <div class="alert alert-success" role="alert">
-        @user.UserName
-        <button data-user-id ="@user.Id"class="btn btn-danger js-toggle-friends">Add friend</button>
+        @user.FriendUser.UserName
+        <button data-user-id ="@user.FriendUser.Id"class="btn btn-danger js-toggle-friends">Add friend</button>
     </div>
 
 

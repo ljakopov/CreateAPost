@@ -14,6 +14,7 @@ namespace CreateAPost.Models
 
         public ICollection<Friendship> ApplicationUsers { get; set; }
         public ICollection<Friendship> FriendUsers { get; set; }
+        public ICollection<Comment> Comments { get; set; }
 
         public ApplicationUser()
         {
@@ -35,6 +36,8 @@ namespace CreateAPost.Models
         public DbSet<Post> Posts { get; set; }
 
         public DbSet<Friendship> Friendships { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
 
 
 
@@ -61,6 +64,10 @@ namespace CreateAPost.Models
                 .WithRequired(f => f.ApplicationUser)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(a=>a.Comments)
+                .WithRequired(p=>p.ApplicationUser)
+                .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);
         }
